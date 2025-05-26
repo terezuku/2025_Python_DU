@@ -44,7 +44,6 @@ class Residence(Property):
         else:
             return f"Stavba se nachází v lokalitě {self.locality.name}, má {self.area} m2 a jeho daň činí {self.calculate_tax()}. Slouží ke komerčním účelům. "
 
-
     def calculate_tax(self):
         base_tax = self.area * self.locality.locality_coefficient * 15
         if self.commercial:
