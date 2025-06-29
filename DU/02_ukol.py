@@ -19,7 +19,8 @@ if dotaz == "n":
     )
     
     if res.status_code == 200:
-        vysledky = res.json()
+        # Převod textu na JSON
+        vysledky = json.loads(res.text)
         subjekty = vysledky.get("ekonomickeSubjekty", [])
         pocet = vysledky.get("pocetCelkem", 0)
 
@@ -36,7 +37,8 @@ if dotaz == "n":
             detail_response = requests.get(url)
 
             if detail_response.status_code == 200:
-                data = detail_response.json()
+                # Převod textu na JSON
+                data = json.loads(detail_response.text)
                 obchodni_jmeno = data.get("obchodniJmeno", "Neznámé jméno")
                 adresa = data.get("sidlo", {}).get("textovaAdresa", "Neznámá adresa")
                 print(f"\n{obchodni_jmeno}\n{adresa}")
@@ -52,7 +54,8 @@ elif dotaz == "i":
     response = requests.get(url)
 
     if response.status_code == 200:
-        data = response.json()
+        # Převod textu na JSON
+        data = json.loads(response.text)
         obchodni_jmeno = data.get("obchodniJmeno", "Neznámé jméno")
         adresa = data.get("sidlo", {}).get("textovaAdresa", "Neznámá adresa")
         print(obchodni_jmeno)
